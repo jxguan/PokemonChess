@@ -9,7 +9,7 @@
  */
 @font-face {
   font-family: 'Trajan';
-  src: url('TrajanPro-Bold.otf') format('opentype');
+  src: asset-data-url('TrajanPro-Bold.otf') format('opentype');
 }
 
 p.error {
@@ -85,7 +85,7 @@ div.header {
 }
 
 img.doge:hover {
-  content: url('doge-rotate.gif');
+  content: asset-data-url('doge-rotate.gif');
   cursor: pointer;
 }
 
@@ -149,7 +149,7 @@ p {
 
 body {
   background: #151515;
-  background-image: url('decoration.jpg');
+  background-image: asset-data-url('decoration.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: right bottom;
