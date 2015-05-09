@@ -37,18 +37,18 @@ function moveWalker() {
 	}
 }
 
-/* 
+/*
  * Autocalculate the header's position
  */
 function positionHeader() {
     header.style.left = (window.innerWidth - 1656)/2 + 'px';
 }
 
-/* 
+/*
  * Get the walker busy and keep making steps.
  */
 function makeSteps() {
-	var animDelta = step; 
+	var animDelta = step;
 	var tweenAmount = [5,5,5,5,6,6,7,8,9,10,11,12,13,14,15,14,13,12,11,10,9,8,7,6,6,5,5,5,5];
 	var frameCount = tweenAmount.length;
 	var newFrame = from;
@@ -60,6 +60,7 @@ function makeSteps() {
 }
 
 function init() {
+	document.body.style.backgroundImage = "url('/assets/tree.png')";
 	walker = document.getElementById("walker");
 	header = document.getElementById("header_bg");
 	walker.onclick = function() {
@@ -71,11 +72,11 @@ function init() {
 	walker.style.bottom = '-15px';
 	makeSteps();
 	positionHeader();
-	if (doge != null) 
+	if (doge != null)
 		doge.onclick = function() {
 			alert("Get Your Hand Off Me!!!");
 		}
 }
-	
+
 window.onload = init;
 window.onresize = positionHeader;
