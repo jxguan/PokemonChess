@@ -1,0 +1,28 @@
+<% content_for :stylesheet, (stylesheet_link_tag "users") %>
+
+<% if session[:user_id] == nil %>
+  <% content_for :title, "Login" %>
+
+  <%= form_tag("post_login", :method => "post") do %>
+    <p class = "form">
+      <%= label_tag(nil, "Username:") %>
+      <%= text_field_tag(:username) %>
+      <br />
+      <%= label_tag(nil, "Password:") %>
+      <%= password_field_tag(:password) %>
+      <br />
+      <%= submit_tag("Log In") %>
+    </p>
+  <% end %>
+
+  <% if flash[:notice] %>
+   <p class = "error"><%= flash[:notice] %></p>
+  <% end %>
+  
+<% else %>
+  <% content_for :title, "Already Logged In" %>
+  <p> Yoooo! You have already logged in. Why do you want to log in again? Please log out first. </p>
+  <div id="doge"> <%= image_tag("doge.png", :alt => "doge",
+    :class => "doge") %> </div>
+<% end %>
+

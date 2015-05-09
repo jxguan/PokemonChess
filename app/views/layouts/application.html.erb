@@ -12,16 +12,18 @@
 </head>
 <body>
 
+
+
   <div id="header_bg">
     <%= image_tag("header.png", :alt => "header") %>
   </div>
 
   <div id="header_txt" class = "header">
-    <%= yield :title %>
+    Pokemon Chess
   </div>
 
   <div id="author_txt" class = "header">
-    By Jiaxin Guan
+    <%= yield :title %>
   </div>
 
   <div id="walker" >
@@ -30,6 +32,21 @@
 
   <div id="section">
 
+    <div class = "banner">
+
+      <p class = "right">
+
+        <% if session[:user_id] == nil %>
+          <%= link_to("Login", controller: "users", action: "login") %>
+          or
+          <%= link_to("Register", controller: "users", action: "new") %>
+        <% else %>
+            Hi, <%= User.find(session[:user_id]).username %>!
+            <%= link_to("Logout", controller: "users", action: "logout") %>
+        <% end %>
+
+      </p>
+    </div>
 
     <div id="cat" >
       <%= image_tag("giphy.gif", :alt => "cat", :width => 140, :height => 100) %>
