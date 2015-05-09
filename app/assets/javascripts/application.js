@@ -60,7 +60,6 @@ function makeSteps() {
 }
 
 function init() {
-	document.body.style.backgroundImage = "url('/assets/tree.png')";
 	walker = document.getElementById("walker");
 	header = document.getElementById("header_bg");
 	walker.onclick = function() {
