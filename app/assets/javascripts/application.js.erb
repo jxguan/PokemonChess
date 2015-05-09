@@ -5,7 +5,7 @@
  * http://www.schillmania.com/content/projects/javascript-animation-1/
  */
 
-var NUM_IMGS = 21;
+var NUM_IMGS = 24;
 var OFFSET = 20;
 var walker = null;
 var header= null;
@@ -14,8 +14,8 @@ var bdPokemon = null;
 var pokemonImgNames = [];
 var time = 0;
 var from = 0;
-var to = 60;
-var step = 60;
+var to = 30;
+var step = 30;
 var frames = [];
 var trembleStep = 0;
 
@@ -26,7 +26,7 @@ function moveWalker() {
 	if (time < frames.length) {
 		walker.style.left = frames[time]+'px';
 		time++;
-		setTimeout(moveWalker,30);
+		setTimeout(moveWalker,17);
 	}
 	else {
 		time = 0;
@@ -67,7 +67,7 @@ function setRandomPokemon() {
 }
 
 function initPokemonImgNames() {
-	<% numImgs = 21 %>
+	<% numImgs = 24 %>
 	<% for i in 1..numImgs do %>
 		pokemonImgNames[<%= i %>] = '<%= asset_path("bg/" + i.to_s() +".gif") %>';
 	<% end %>
@@ -88,7 +88,7 @@ function init() {
 	}
 	doge = document.getElementById("doge");
 	walker.style.left = '0px';
-	walker.style.bottom = '-15px';
+	walker.style.bottom = '-40px';
 	makeSteps();
 	positionHeader();
 	if (doge != null)
