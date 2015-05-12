@@ -18,20 +18,22 @@ var to = 30;
 var step = 30;
 var frames = [];
 var trembleStep = 0;
+var clicked = false;
 
 /*
  * Move the walker forward by one step, and prepare for the next step afterwards.
  */
 function moveWalker() {
-	if (time < frames.length) {
+	if (time < frames.length && clicked == false) {
 		walker.style.left = frames[time]+'px';
 		time++;
 		setTimeout(moveWalker,17);
 	}
 	else {
+		clicked = false;;
 		time = 0;
 		from = parseInt(walker.style.left);
-		if ((from + step > window.innerWidth && step > 0) || (from + step < 0 && step < 0)) {
+		if ((from + step > window.innerWidth && step > 0) || (from + step < -walker.style.width && step < 0)) {
 			step = -step;
 			walker.style.transform = step < 0 ? "scaleX(-1)" : "scaleX(1)";
 		}
@@ -84,7 +86,9 @@ function init() {
 	header = document.getElementById("header_bg");
 	walker.onclick = function() {
 		step = -step;
+		clicked = true;
 		walker.style.transform = step < 0 ? "scaleX(-1)" : "scaleX(1)";
+
 	}
 	doge = document.getElementById("doge");
 	walker.style.left = '0px';
