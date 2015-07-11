@@ -8,6 +8,12 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= yield :stylesheet %>
   <%= javascript_include_tag 'application', type: "text/javascript" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js", type: "text/javascript" %>
+  <%= javascript_include_tag 'gooeymenu', type: "text/javascript" %>
+  <!-- Gooey Menu Script (c) Dynamic Drive (www.dynamicdrive.com)
+       This notice MUST stay intact for legal use
+       Visit http://www.dynamicdrive.com/ for this script and 100s more. -->
+  <%= stylesheet_link_tag 'gooeymenu', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -15,6 +21,18 @@
   <div id="header_img" class = "header">
     <%= image_tag("logo.png", :alt => "logo", :width => 700) %>
   </div>
+
+  <% if ((defined?(@no_navigation_bar)) == nil) %>
+    <div id="menuholder">
+      <ul id="gooeymenu" class="solidblockmenu">
+      <li><%= link_to("Home", controller: "main", action: "index") %></li>
+      <li><a href="http://www.dynamicdrive.com/style/">Pokédex</a></li>
+      <li><a href="http://tools.dynamicdrive.com">My Teams</a></li>
+      <li><a href="http://www.javascriptkit.com/">Battle</a></li>
+      <li><%= link_to("Log Out", controller: "users", action: "logout") %></li>
+      </ul>
+    </div>
+  <% end %>
 
   <div id="walker" >
     <%= image_tag("runner.gif", :alt => "walker", :width => 150, :height => 150) %>
@@ -26,28 +44,23 @@
 
   <div id="section">
 
-    <div class = "banner">
-
-      <p class = "right">
-
-        <% if session[:user_id] == nil %>
-          <%= link_to("Login", controller: "users", action: "login") %>
-          or
-          <%= link_to("Register", controller: "users", action: "new") %>
-        <% else %>
-            Hi, <%= User.find(session[:user_id]).username %>!
-            <%= link_to("Logout", controller: "users", action: "logout") %>
-        <% end %>
-
-      </p>
-    </div>
-
     <div id="cat" >
       <%= image_tag("giphy.gif", :alt => "cat", :width => 140, :height => 100) %>
     </div>
 
     <%= yield %>
   </div>
+
+  <footer class="site-footer" ><div class="wrap"><p>Copyright &#x000A9;&nbsp;2015 <a href="http://www.stanford.edu/~jxguan/">Jiaxin Guan</a></p></div></footer>
+
+  <%= javascript_tag do %>
+    window.onload = function() {
+      init();
+      <% if ((defined?(@no_navigation_bar)) == nil) %>
+        gooeymenu.setup({id:'gooeymenu', selectitem:<%= yield :menu_index %>, fxtime:400});
+      <% end %>
+    }
+  <% end %>
 </body>
 </html>
 

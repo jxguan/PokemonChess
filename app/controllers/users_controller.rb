@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   def new
+    @no_navigation_bar = true
     @user = User.new
   end
 
   def create
+    @no_navigation_bar = true
     if (params[:user] != nil)
       if (params[:user][:invitation] != "8245")
         flash[:notice] = "Invalid Invitation Code"
@@ -24,10 +26,11 @@ class UsersController < ApplicationController
   end
 
   def login
-    # Nothing need to be done here
+    @no_navigation_bar = true
   end
 
   def post_login
+    @no_navigation_bar = true
     user = User.find_by login: params[:username]
     if (user == nil)
       flash[:notice] = "Login Name does not exist!"
@@ -43,7 +46,7 @@ class UsersController < ApplicationController
 
   def logout
     reset_session
-    redirect_to("/")
+    redirect_to(controller: "users", action: "login")
   end
 
   private
