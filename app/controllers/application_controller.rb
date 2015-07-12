@@ -4,7 +4,13 @@ class ApplicationController < ActionController::Base
 
   def require_login
     if session[:user_id] == nil
-      redirect_to(:controller => "users", :action => "login")
+      redirect_to(:controller => "main", :action => "welcome")
+    end
+  end
+
+  def require_not_logged_in
+    if session[:user_id] != nil
+      redirect_to(:controller => "main", :action => "home")
     end
   end
 

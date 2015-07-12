@@ -2,23 +2,22 @@
 
 <% if session[:user_id] == nil %>
   <% content_for :title, "Login" %>
-
-  <%= form_tag("post_login", :method => "post") do %>
-    <p class = "form">
-      <%= label_tag(nil, "Username:") %>
-      <%= text_field_tag(:username) %>
-      <br />
-      <%= label_tag(nil, "Password:") %>
-      <%= password_field_tag(:password) %>
-      <br />
-      <%= submit_tag("Log In") %>
-    </p>
-  <% end %>
-
+  <div class="banner">
+    <a href="login" class="button">Log In</a>
+    <a href="signup" class="button">Sign Up</a>
+  </div>
+  <h3> Login </h3>
   <% if flash[:notice] %>
    <p class = "error"><%= flash[:notice] %></p>
   <% end %>
-  
+  <%= form_tag("post_login", :method => "post") do %>
+      <%= label_tag(nil, "Username") %>
+      <%= text_field_tag(:username, @username) %>
+      <%= label_tag(nil, "Password") %>
+      <%= password_field_tag(:password) %>
+      <%= submit_tag("Log In", :class => "button") %>
+  <% end %>
+
 <% else %>
   <% content_for :title, "Already Logged In" %>
   <p> Yoooo! You have already logged in. Why do you want to log in again? Please log out first. </p>

@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
 
+  validates :nickname, presence: true
+  validates :username, uniqueness: true
   validates :username, presence: true
-  validates :login, uniqueness: true
-  validates :login, presence: true
   validates :password, presence: true
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
+
 
   # Returns a copy of the password just stored
   def password

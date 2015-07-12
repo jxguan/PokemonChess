@@ -2,42 +2,32 @@
 
 
 <% if session[:user_id] == nil %>
-  <% content_for :title, "Register" %>
-
-  <%= form_for(@user, method: :post,
-  url: {action: :create, id: params[:id]}) do |form| %>
-    <div class="form">
-      <br />
-      <%= label_tag(nil, "Login Name:") %> <br />
-      <%= form.text_field(:login)  %>
-    </div>
-    <div class="form">
-      <%= label_tag(nil, "Username (This is the name that other player will see):") %> <br />
-      <%= form.text_field(:username)  %>
-    </div>
-    <div class="form">
-      <%= label_tag(nil, "Password:") %> <br />
-      <%= form.password_field(:password) %>
-    </div>
-    <div class="form">
-      <%= label_tag(nil, "Enter Password Again:") %> <br />
-      <%= form.password_field(:password_confirmation) %>
-    </div>
-
-    <div class="form">
-      <%= label_tag(nil, "Enter Invitation Code:") %> <br />
-      <%= form.password_field(:invitation) %>
-    </div>
-
-    <% @user.errors.full_messages.each do |msg| %>
+  <% content_for :title, "Signup" %>
+  <div class="banner">
+    <a href="login" class="button">Log In</a>
+    <a href="signup" class="button">Sign Up</a>
+  </div>
+  <h3> Signup </h3>
+  <% @user.errors.full_messages.each do |msg| %>
       <p class="error"><%= msg %></p>
     <% end %>
     <% if flash[:notice] %>
       <p class = "error"><%= flash[:notice] %></p>
     <% end %>
-    <div class="form">
-      <%= form.submit "Register" %>
-    </div>
+  <%= form_for(@user, method: :post,
+  url: {action: :create, id: params[:id]}) do |form| %>
+      <%= label_tag(nil, "Username") %>
+      <%= form.text_field(:username)  %>
+      <%= label_tag(nil, "Nickname (This is the name that other players will see)") %>
+      <%= form.text_field(:nickname)  %>
+      <%= label_tag(nil, "Password") %>
+      <%= form.password_field(:password) %>
+      <%= label_tag(nil, "Enter Password Again") %>
+      <%= form.password_field(:password_confirmation) %>
+      <%= label_tag(nil, "Invitation Code") %>
+      <%= form.password_field(:invitation) %>
+
+      <%= form.submit("Sign Up", :class => "button")%>
   <% end %>
 
 
