@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150509053418) do
+ActiveRecord::Schema.define(version: 20150717024017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pokemon_data_entries", force: :cascade do |t|
+    t.string  "name"
+    t.string  "chinese_name"
+    t.string  "aliases"
+    t.integer "hp"
+    t.integer "at"
+    t.integer "df"
+    t.integer "sa"
+    t.integer "sd"
+    t.integer "sp"
+    t.integer "sum"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
