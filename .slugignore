@@ -1,3 +1,4 @@
 *.psd
 /test
 /spec
+/app/assets/images/pokemon
