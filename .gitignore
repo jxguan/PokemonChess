@@ -14,3 +14,4 @@
 
 
 app/assets/images/pokemon
+app/controllers/invitation_code.rb

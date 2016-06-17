@@ -1,3 +1,5 @@
+require_relative 'invitation_code'
+
 class UsersController < ApplicationController
   def new
     require_not_logged_in
@@ -8,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @no_navigation_bar = true
     if (params[:user] != nil)
-      if (params[:user][:invitation] != "8245")
+      if (params[:user][:invitation] != $invitation_code)
         flash[:notice] = "Invalid Invitation Code"
         redirect_to(:controller => "users", :action => "new")
       else
